@@ -6,7 +6,7 @@ import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
 abstract class HomeState {
   final HomeScreenState screen;
-  
+
   HomeState(this.screen);
 
   Widget getUI(BuildContext context);
@@ -14,12 +14,11 @@ abstract class HomeState {
 
 class HomeStateInit extends HomeState {
   final data;
-  HomeStateInit(screen,this.data) : super(screen);
+  HomeStateInit(screen, this.data) : super(screen);
   TextEditingController controller = TextEditingController();
 
   @override
   Widget getUI(BuildContext context) {
-    final node = FocusScope.of(context);
     return Scaffold(
       appBar: appbar(context),
       body: Column(
@@ -27,7 +26,7 @@ class HomeStateInit extends HomeState {
           Container(
             height: 60,
             width: double.maxFinite,
-            color:Colors.blue[100],
+            color: Colors.blue[100],
             child: Align(
               alignment: Alignment.centerLeft,
               child: Padding(
@@ -36,10 +35,9 @@ class HomeStateInit extends HomeState {
                   'PLANNERY',
                   textAlign: TextAlign.left,
                   style: TextStyle(
-                      color:Theme.of(context).primaryColor,
+                      color: Theme.of(context).primaryColor,
                       fontWeight: FontWeight.bold,
-                      fontSize: 17
-                  ),
+                      fontSize: 17),
                 ),
               ),
             ),
@@ -49,66 +47,74 @@ class HomeStateInit extends HomeState {
               height: 25,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(right:8.0,left:8,),
-            child: Container(
-              height: 300,
-              child: GridView.builder(
-                  padding: EdgeInsets.only(top: 0),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisSpacing: 22,
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 22,
-                      childAspectRatio: (MediaQuery.of(context).size.width/2)/150
-                  ),
-                  shrinkWrap: true,
-                  itemCount: data.length,
-                  itemBuilder: (_, int index) {
-                    return InkWell(
-                      onTap: (){
-                        screen.selectedAppointment(index, data, data[index]['users']);
-                      },
-                      child: Container(
-                        color: Colors.blue[100],
-                        child:Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Center(
-                              child: Text('${index+1} Appointment',style:TextStyle(
-                                  color: Colors.blue,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 17
-                              ),),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Center(
-                                child: Text('${data[index]['date'].toString().substring(0,10)}',style:TextStyle(
-                                  color: Colors.blue,
-                                    fontSize: 15
-                                ),),
+          Expanded(
+            flex: 15,
+                      child: Padding(
+              padding: const EdgeInsets.only(
+                right: 8.0,
+                left: 8,
+              ),
+              child: Container(
+                child: GridView.builder(
+                    padding: EdgeInsets.only(top: 0),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisSpacing: 22,
+                        crossAxisCount: 2,
+                        mainAxisSpacing: 22,
+                        childAspectRatio:
+                            (MediaQuery.of(context).size.width / 2) / 150),
+                    shrinkWrap: true,
+                    itemCount: data.length,
+                    itemBuilder: (_, int index) {
+                      return InkWell(
+                        onTap: () {
+                          screen.selectedAppointment(
+                              index, data, data[index]['users']);
+                        },
+                        child: Container(
+                          color: Colors.blue[100],
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Center(
+                                child: Text(
+                                  '${index + 1} Appointment',
+                                  style: TextStyle(
+                                      color: Colors.blue,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 17),
+                                ),
                               ),
-                            ),
-                          ],
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Center(
+                                  child: Text(
+                                    '${data[index]['date'].toString().substring(0, 10)}',
+                                    style: TextStyle(
+                                        color: Colors.blue, fontSize: 15),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    );
-                  }),
+                      );
+                    }),
+              ),
             ),
           ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor:Theme.of(context).primaryColor,
-        onPressed: (){
+        backgroundColor: Theme.of(context).primaryColor,
+        onPressed: () {
           DatePicker.showDatePicker(context,
               showTitleActions: true,
               minTime: DateTime.now(),
-              onChanged: (date) {
-              }, onConfirm: (date) {
+              onChanged: (date) {}, onConfirm: (date) {
             screen.createAppointments(date.toString());
-              }, currentTime: DateTime.now(), locale: LocaleType.en);
+          }, currentTime: DateTime.now(), locale: LocaleType.en);
         },
         child: Icon(Icons.add),
       ),
@@ -122,7 +128,7 @@ class HomeStateLoading extends HomeState {
   @override
   Widget getUI(BuildContext context) {
     return Scaffold(
-      appBar: appbar(context,false),
+      appBar: appbar(context, false),
       body: Center(
         child: Container(
           width: 45,
@@ -159,15 +165,18 @@ class HomeStateError extends HomeState {
           ),
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child:FlatButton(
+            child: FlatButton(
               color: Theme.of(context).primaryColor,
-              onPressed: (){
+              onPressed: () {
                 screen.refresh();
               },
-              child: Text('Refresh',style: TextStyle(
-                fontSize: 16,
-                color: AppBarTheme.of(context).color,
-              ),),
+              child: Text(
+                'Refresh',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: AppBarTheme.of(context).color,
+                ),
+              ),
             ),
           ),
         ],
@@ -175,175 +184,205 @@ class HomeStateError extends HomeState {
     );
   }
 }
+
 class HomeStateSelected extends HomeState {
   final int selectedIndex;
   final List users;
   final data;
-  HomeStateSelected(screen,this.data,this.selectedIndex,this.users) : super(screen);
+  HomeStateSelected(screen, this.data, this.selectedIndex, this.users)
+      : super(screen);
   TextEditingController controller = TextEditingController();
 
   @override
   Widget getUI(BuildContext context) {
     final node = FocusScope.of(context);
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         screen.unselectedAppointment(data);
       },
       child: Scaffold(
         appBar: appbar(context),
-        body: Column(
-          children: [
-            Container(
-              height: 60,
-              width: double.maxFinite,
-              color: Colors.blue[100],
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: EdgeInsets.all(16),
-                  child: Text(
-                    'PLANNERY',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                        color:Theme.of(context).primaryColor ,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 17
+        body: SizedBox(
+          height: MediaQuery.of(context).size.height,
+                  child: Column(
+            children: [
+              Container(
+                height: 60,
+                width: double.maxFinite,
+                color: Colors.blue[100],
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: EdgeInsets.all(16),
+                    child: Text(
+                      'PLANNERY',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 17),
                     ),
                   ),
                 ),
               ),
-            ),
-            Flexible(
-              child: Container(
-                height: 25,
+              Flexible(
+                child: Container(
+                  height: 25,
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(right:8.0,left:8,),
-              child: Container(
-                height: 300,
-                child: GridView.builder(
-                    padding: EdgeInsets.only(top: 0),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisSpacing: 22,
-                        crossAxisCount: 2,
-                        mainAxisSpacing: 22,
-                        childAspectRatio: (MediaQuery.of(context).size.width/2)/150
+              Expanded(
+                flex: 21,
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    right: 8.0,
+                    left: 8,
+                  ),
+                  child: Container(
+                    child: GridView.builder(
+                        physics: ScrollPhysics(),
+                        padding: EdgeInsets.only(top: 0),
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisSpacing: 22,
+                            crossAxisCount: 2,
+                            mainAxisSpacing: 22,
+                            childAspectRatio:
+                                (MediaQuery.of(context).size.width / 2) / 150),
+                        shrinkWrap: true,
+                        itemCount: data.length,
+                        itemBuilder: (_, int index) {
+                          return InkWell(
+                            onTap: () {
+                              if (index == selectedIndex) {
+                                screen.unselectedAppointment(data);
+                              } else {
+                                screen.selectedAppointment(
+                                    index, data, data[index]['users']);
+                              }
+                            },
+                            child: Container(
+                              color: selectedIndex == index
+                                  ? Colors.blue
+                                  : Colors.blue[100],
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Center(
+                                    child: Text(
+                                      '${index + 1} Appointment',
+                                      style: TextStyle(
+                                          color: selectedIndex == index
+                                              ? Colors.white
+                                              : Colors.blue,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 17),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Center(
+                                      child: Text(
+                                        '${data[index]['date'].toString().substring(0, 10)}',
+                                        style: TextStyle(
+                                            color: selectedIndex == index
+                                                ? Colors.white
+                                                : Colors.blue,
+                                            fontSize: 15),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        }),
+                  ),
+                ),
+              ),
+              Flexible(
+                child: Container(
+                  height: 25,
+                ),
+              ),
+              Container(
+                height: 60,
+                width: double.maxFinite,
+                color: Colors.blue[100],
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: EdgeInsets.all(16),
+                    child: Text(
+                      'PARTICIPENTS',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                          color: Colors.blue,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 17),
                     ),
-                    shrinkWrap: true,
-                    itemCount: data.length,
-                    itemBuilder: (_, int index) {
-                      return InkWell(
-                        onTap: (){
-                          if (index==selectedIndex){
-                            screen.unselectedAppointment(data);
-                          }
-                          else {
-                            screen.selectedAppointment(index, data, data[index]['users']);
-                          }
-                        },
-                        child: Container(
-                          color:selectedIndex==index?Colors.blue:Colors.blue[100],
-                          child:Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Center(
-                                child: Text('${index+1} Appointment',style:TextStyle(
-                                  color: selectedIndex==index?Colors.white:Colors.blue,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 17
-                                ),),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Center(
-                                  child: Text('${data[index]['date'].toString().substring(0,10)}',style:TextStyle(
-                                    color: selectedIndex==index?Colors.white:Colors.blue,
-                                      fontSize: 15
-                                  ),),
-                                ),
-                              ),
-                            ],
+                  ),
+                ),
+              ),
+              Flexible(
+                child: Container(
+                  height: 25,
+                ),
+              ),
+              Container(
+                height: 150,
+                width: MediaQuery.of(context).size.width,
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  itemCount: users.length,
+                  itemBuilder: (_, index) {
+                    return Container(
+                      width: 100,
+                      child: Column(
+                        children: [
+                          Container(
+                            width: 65,
+                            height: 65,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.blue[200]),
+                            child: Center(
+                                child: Icon(
+                              Icons.person,
+                              color: Colors.blue,
+                              size: 30,
+                            )),
                           ),
-                        ),
-                      );
-                    }),
-              ),
-            ),
-            Flexible(
-              child: Container(
-                height: 25,
-              ),
-            ),
-            Container(
-              height: 60,
-              width: double.maxFinite,
-              color: Colors.blue[100],
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: EdgeInsets.all(16),
-                  child: Text(
-                    'PARTICIPENTS',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      color: Colors.blue,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 17
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Flexible(
-              child: Container(
-                height: 25,
-              ),
-            ),
-            Container(
-              height: 150,
-              width:MediaQuery.of(context).size.width,
-              child: ListView.builder(
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                itemCount: users.length,
-                itemBuilder: (_,index){
-                  return Container(
-                    width: 100,
-                    child:Column(
-                      children: [
-                      Container(
-                      width: 65,
-                      height: 65,
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.blue[200]
+                          Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: Align(
+                                alignment: Alignment.topCenter,
+                                child: Text(
+                                  '${users[index]}',
+                                  style: TextStyle(
+                                      color: Colors.blue,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 17),
+                                )),
+                          ),
+                        ],
                       ),
-                      child:Center(child: Icon(Icons.person,color: Colors.blue,size: 30,)),
-                    ),
-                        Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: Align(alignment: Alignment.topCenter,child: Text('${users[index]}',style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold,fontSize: 17),)),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              ),
-            )
-          ],
+                    );
+                  },
+                ),
+              )
+            ],
+          ),
         ),
         floatingActionButton: FloatingActionButton(
-          backgroundColor:Theme.of(context).primaryColor,
-          onPressed: (){
+          backgroundColor: Theme.of(context).primaryColor,
+          onPressed: () {
             DatePicker.showDatePicker(context,
                 showTitleActions: true,
                 minTime: DateTime.now(),
-                onChanged: (date) {
-                }, onConfirm: (date) {
-                  screen.createAppointments(date.toString());
-                }, currentTime: DateTime.now(), locale: LocaleType.en);
+                onChanged: (date) {}, onConfirm: (date) {
+              screen.createAppointments(date.toString());
+            }, currentTime: DateTime.now(), locale: LocaleType.en);
           },
           child: Icon(Icons.add),
         ),
