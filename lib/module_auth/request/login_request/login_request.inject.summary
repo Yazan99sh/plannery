@@ -1,0 +1,8 @@
+{
+  "asset": "asset:plannery/lib/module_auth/request/login_request/login_request.dart",
+  "summary": {
+    "injector": [],
+    "module": [],
+    "injectable": []
+  }
+}

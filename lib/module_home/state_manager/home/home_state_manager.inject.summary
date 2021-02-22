@@ -1,0 +1,41 @@
+{
+  "asset": "asset:plannery/lib/module_home/state_manager/home/home_state_manager.dart",
+  "summary": {
+    "injector": [],
+    "module": [],
+    "injectable": [
+      {
+        "name": "HomeStateManager",
+        "constructor": {
+          "name": "",
+          "kind": "constructor",
+          "injectedType": {
+            "lookupKey": {
+              "root": "asset:plannery/lib/module_home/state_manager/home/home_state_manager.dart#HomeStateManager",
+              "qualifier": null
+            },
+            "isProvider": false
+          },
+          "singleton": false,
+          "asynchronous": false,
+          "dependencies": [
+            {
+              "lookupKey": {
+                "root": "asset:plannery/lib/module_init/presistance/init_prefs_helper.dart#InitPrefsHelper",
+                "qualifier": null
+              },
+              "isProvider": false
+            },
+            {
+              "lookupKey": {
+                "root": "asset:plannery/lib/module_home/service/home_service/home_service.dart#HomeService",
+                "qualifier": null
+              },
+              "isProvider": false
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "asset": "asset:plannery/lib/module_init/presistance/init_prefs_helper.dart",
+  "summary": {
+    "injector": [],
+    "module": [],
+    "injectable": [
+      {
+        "name": "InitPrefsHelper",
+        "constructor": {
+          "name": "",
+          "kind": "constructor",
+          "injectedType": {
+            "lookupKey": {
+              "root": "asset:plannery/lib/module_init/presistance/init_prefs_helper.dart#InitPrefsHelper",
+              "qualifier": null
+            },
+            "isProvider": false
+          },
+          "singleton": false,
+          "asynchronous": false,
+          "dependencies": []
+        }
+      }
+    ]
+  }
+}
