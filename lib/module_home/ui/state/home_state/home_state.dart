@@ -26,7 +26,7 @@ class HomeStateInit extends HomeState {
           Container(
             height: 60,
             width: double.maxFinite,
-            color: Colors.blue[100],
+            color: Theme.of(context).primaryColor,
             child: Align(
               alignment: Alignment.centerLeft,
               child: Padding(
@@ -35,7 +35,7 @@ class HomeStateInit extends HomeState {
                   'PLANNERY',
                   textAlign: TextAlign.left,
                   style: TextStyle(
-                      color: Theme.of(context).primaryColor,
+                      color: Theme.of(context).primaryColorDark,
                       fontWeight: FontWeight.bold,
                       fontSize: 17),
                 ),
@@ -72,7 +72,7 @@ class HomeStateInit extends HomeState {
                               index, data, data[index]['users']);
                         },
                         child: Container(
-                          color: Colors.blue[100],
+                          color:Theme.of(context).primaryColor,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -81,7 +81,7 @@ class HomeStateInit extends HomeState {
                                 child: Text(
                                   '${index + 1} Appointment',
                                   style: TextStyle(
-                                      color: Colors.blue,
+                                      color: Theme.of(context).primaryColorDark,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 17),
                                 ),
@@ -92,7 +92,7 @@ class HomeStateInit extends HomeState {
                                   child: Text(
                                     '${data[index]['date'].toString().substring(0, 10)}',
                                     style: TextStyle(
-                                        color: Colors.blue, fontSize: 15),
+                                        color:Theme.of(context).primaryColorDark, fontSize: 15),
                                   ),
                                 ),
                               ),
@@ -107,7 +107,7 @@ class HomeStateInit extends HomeState {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: Theme.of(context).primaryColorDark,
         onPressed: () {
           DatePicker.showDatePicker(context,
               showTitleActions: true,
@@ -128,7 +128,7 @@ class HomeStateLoading extends HomeState {
   @override
   Widget getUI(BuildContext context) {
     return Scaffold(
-      appBar: appbar(context, false),
+      appBar: appbar(context),
       body: Center(
         child: Container(
           width: 45,
@@ -195,7 +195,6 @@ class HomeStateSelected extends HomeState {
 
   @override
   Widget getUI(BuildContext context) {
-    final node = FocusScope.of(context);
     return GestureDetector(
       onTap: () {
         screen.unselectedAppointment(data);
@@ -209,7 +208,7 @@ class HomeStateSelected extends HomeState {
               Container(
                 height: 60,
                 width: double.maxFinite,
-                color: Colors.blue[100],
+                color: Theme.of(context).primaryColor,
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Padding(
@@ -218,7 +217,7 @@ class HomeStateSelected extends HomeState {
                       'PLANNERY',
                       textAlign: TextAlign.left,
                       style: TextStyle(
-                          color: Theme.of(context).primaryColor,
+                          color: Theme.of(context).primaryColorDark,
                           fontWeight: FontWeight.bold,
                           fontSize: 17),
                     ),
@@ -261,8 +260,8 @@ class HomeStateSelected extends HomeState {
                             },
                             child: Container(
                               color: selectedIndex == index
-                                  ? Colors.blue
-                                  : Colors.blue[100],
+                                  ? Theme.of(context).primaryColorDark
+                                  : Theme.of(context).primaryColor,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -272,8 +271,8 @@ class HomeStateSelected extends HomeState {
                                       '${index + 1} Appointment',
                                       style: TextStyle(
                                           color: selectedIndex == index
-                                              ? Colors.white
-                                              : Colors.blue,
+                                              ? AppBarTheme.of(context).color
+                                              : Theme.of(context).primaryColorDark,
                                           fontWeight: FontWeight.bold,
                                           fontSize: 17),
                                     ),
@@ -285,8 +284,8 @@ class HomeStateSelected extends HomeState {
                                         '${data[index]['date'].toString().substring(0, 10)}',
                                         style: TextStyle(
                                             color: selectedIndex == index
-                                                ? Colors.white
-                                                : Colors.blue,
+                                                ? AppBarTheme.of(context).color
+                                                : Theme.of(context).primaryColorDark,
                                             fontSize: 15),
                                       ),
                                     ),
@@ -307,7 +306,7 @@ class HomeStateSelected extends HomeState {
               Container(
                 height: 60,
                 width: double.maxFinite,
-                color: Colors.blue[100],
+                color: Theme.of(context).primaryColor,
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Padding(
@@ -316,7 +315,7 @@ class HomeStateSelected extends HomeState {
                       'PARTICIPENTS',
                       textAlign: TextAlign.left,
                       style: TextStyle(
-                          color: Colors.blue,
+                          color:Theme.of(context).primaryColorDark,
                           fontWeight: FontWeight.bold,
                           fontSize: 17),
                     ),
@@ -345,11 +344,11 @@ class HomeStateSelected extends HomeState {
                             height: 65,
                             decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: Colors.blue[200]),
+                                color:Theme.of(context).primaryColor),
                             child: Center(
                                 child: Icon(
                               Icons.person,
-                              color: Colors.blue,
+                              color: Theme.of(context).primaryColorDark,
                               size: 30,
                             )),
                           ),
@@ -360,7 +359,7 @@ class HomeStateSelected extends HomeState {
                                 child: Text(
                                   '${users[index]}',
                                   style: TextStyle(
-                                      color: Colors.blue,
+                                      color: Theme.of(context).primaryColorDark,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 17),
                                 )),
@@ -375,7 +374,7 @@ class HomeStateSelected extends HomeState {
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          backgroundColor: Theme.of(context).primaryColor,
+          backgroundColor: Theme.of(context).primaryColorDark,
           onPressed: () {
             DatePicker.showDatePicker(context,
                 showTitleActions: true,

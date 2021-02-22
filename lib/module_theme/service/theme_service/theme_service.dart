@@ -14,7 +14,7 @@ class AppThemeDataService {
   AppThemeDataService(this._preferencesHelper);
 
   static Color get PrimaryColor {
-    return Colors.blue;
+    return Colors.blue[100];
   }
 
   static Color get PrimaryDarker {
@@ -33,10 +33,10 @@ class AppThemeDataService {
     if (dark == true) {
       return ThemeData(
         brightness: Brightness.dark,
-        primaryColor: PrimaryColor,
+        primaryColor: Colors.grey[900],
         primaryColorDark: PrimaryDarker,
         accentColor: AccentColor,
-        primarySwatch: PrimaryColor,
+        primarySwatch: PrimaryDarker,
         appBarTheme: AppBarTheme(
           centerTitle: true,
           color: Colors.black,
@@ -48,10 +48,10 @@ class AppThemeDataService {
       primaryColor: PrimaryColor,
       primaryColorDark: PrimaryDarker,
       accentColor: AccentColor,
-      primarySwatch:PrimaryColor,
+      primarySwatch:PrimaryDarker,
       appBarTheme: AppBarTheme(
         centerTitle: true,
-        color:SecondaryColor,
+        color:Colors.grey[50],
       ),
     );
   }

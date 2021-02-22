@@ -26,7 +26,7 @@ class InitStateInit extends InitState {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset('assets/images/logo.png',width: 175,height: 175,color:Theme.of(context).primaryColor,),
+            Image.asset('assets/images/logo.png',width: 175,height: 175,color:Theme.of(context).primaryColorDark,),
             Flexible(
              child:Container(
                height: 150,
@@ -44,15 +44,15 @@ class InitStateInit extends InitState {
                     contentPadding: EdgeInsets.all(8),
                     hintText: 'Enter your name',
                     hintStyle: TextStyle(
-                      color:Theme.of(context).primaryColor,
+                      color:Theme.of(context).primaryColorDark,
                     ),
 
                     enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(0),
-                        borderSide: BorderSide(color:Theme.of(context).primaryColor)),
+                        borderSide: BorderSide(color:Theme.of(context).primaryColorDark)),
                     focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(0),
-                        borderSide: BorderSide(color:Theme.of(context).primaryColor)),
+                        borderSide: BorderSide(color:Theme.of(context).primaryColorDark)),
                   ),
                 ),
               ),
@@ -66,7 +66,7 @@ class InitStateInit extends InitState {
                   },
                   child: Container(
                     height: 45,
-                    color:Theme.of(context).primaryColor,
+                    color:Theme.of(context).primaryColorDark,
                     width:MediaQuery.of(context).size.width*0.75,
                     child: Center(
                       child: Text('save',style: TextStyle(

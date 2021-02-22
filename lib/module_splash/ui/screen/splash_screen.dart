@@ -36,7 +36,7 @@ class _SplashScreenState extends State<SplashScreen> {
             'assets/images/logo.png',
             width: 175,
             height: 175,
-            color: Theme.of(context).primaryColor,
+            color: Theme.of(context).primaryColorDark,
           ),
         ),
       ),
